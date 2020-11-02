@@ -43,13 +43,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'addTodo'
-    ]),
+    ...mapActions({
+      addTodo: 'todo/addTodo',
+    }),
     addNewTodo() {
       //use this keyword to access data
       //make sure no empty todo can be added
-      if (this.newTodo.trim().length == 0) {
+      if (this.newTodo.trim().length === 0) {
         return
       }
 
@@ -65,11 +65,10 @@ export default {
   },
   computed: {
     // mix the getters into computed with object spread operator
-    ...mapGetters([
-      'anyRemaining',
-      'todos',
-      // ...
-    ])
+    ...mapGetters('todo',{
+      remaining: 'remaining',
+      todos: 'todos'
+    }),
   }, //computed property is for composing new data derived from other data
 }
 </script>

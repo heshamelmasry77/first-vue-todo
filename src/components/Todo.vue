@@ -56,17 +56,17 @@ import { mapActions } from 'vuex'
       }
     },
     methods: {
-      ...mapActions([
-        'deleteTodo',
-        'updateTodo'
-      ]),
+      ...mapActions({
+        deleteTodo: 'todo/deleteTodo',
+        updateTodo:'todo/updateTodo'
+      }),
       editTodo() {
         this.beforeEditCache = this.title;
         this.editing = true;
       },
       doneEdit() {
         //if edited title is empty set it to the previous text
-        if (this.title.trim() == '') {
+        if (this.title.trim() === '') {
           this.title = this.beforeEditCache
         }
         this.editing = false
